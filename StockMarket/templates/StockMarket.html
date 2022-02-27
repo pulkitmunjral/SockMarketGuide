@@ -3,16 +3,19 @@
 {% load crispy_forms_tags %}
 <div class="container">
     <h1>Stocks</h1>
-    <form method="post" action="{% url 'StockMarket' %}">
+    <form method="post" action="{% url 'StockMarket' %}" >
         {% csrf_token %}
-        <input class="form-control me-2" type="search" placeholder="Search Stock" name="search" id="search">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-    </form>
+        <div class="mt-2 pl-2">
+        <input class="form-control mt-2 pl-2" type="search" placeholder="Search Stocks" name="search" id="search"><br>
+        </div>
+        <button class="btn btn-success"  type="submit" name="action" value="search">Search</button>
+        <button class="btn btn-success"  type="submit" name="action" value="all">Remove Filter</button>
+    </form><br>
     <div class="content" id="content">
     {% for stock in Stocks %}
         <div class="single_content border border-success mt-2 pl-2">
-        <h3>{{stock.title}}</h3>
-        <p>{{stock.desc}}</p>
+        <a href="{% url 'details' stock.id %}">{{stock.title}}</a>
+        <a href="{% url 'query' stock.id %}">Query</a>
         </div>
     {% endfor %}
     </div>
@@ -42,9 +45,9 @@ function loadmorestock() {
         success: function (response) {
             const data = response.Stocks
             data.map(stock => {
-                console.log(stock.title);
+                console.log(stock.id);
                 content_container.innerHTML += `<div class="single_content border border-success mt-2 pl-2">
-                                                    <h3>${stock.title}</h3>
+                                                    <a href="{% url 'details' '1' %}">${stock.title}</a>
                                                     <p>${stock.desc}</p>
                                                 </div>`})
             if (_current_item == total) {
