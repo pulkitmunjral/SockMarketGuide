@@ -1,0 +1,24 @@
+{% extends "home.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container">
+        <h1>Stocks</h1>
+        <div class="content" id="content">
+            {% for stock in Stocks %}
+            <div class="single_content border border-success mt-2 pl-2">
+                <h3>{{stock.title}}</h3>
+                <p>{{stock.desc}}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="spinner-border text-primary mt-2 not-visible" role="status" id="spinner">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="load-more__btn mt-3" id="btn">
+            <button type="button" class="btn btn-success" href="{%url 'load'%}">Load More stock</button>
+        </div>
+        <div class="alert alert-danger mt-2 not-visible" role="alert" id='alert'>
+            No more stock to load!!
+        </div>
+    </div>
+{% endblock %}
