@@ -1,9 +1,9 @@
 {% extends "home.html" %}
 {% block content %}
 {% load crispy_forms_tags %}
-<div class="container">
+<div class="container" >
     <h1>Stocks</h1>
-    <form method="post" action="{% url 'StockMarket' %}" >
+    <form method="post" action="{% url 'StockMarket' %}"  >
         {% csrf_token %}
         <div class="mt-2 pl-2">
         <input class="form-control mt-2 pl-2" type="search" placeholder="Search Stocks" name="search" id="search"><br>
@@ -13,9 +13,9 @@
     </form><br>
     <div class="content" id="content">
     {% for stock in Stocks %}
-        <div class="single_content border border-success mt-2 pl-2">
-        <a href="{% url 'details' stock.id %}">{{stock.title}}</a>
-        <a href="{% url 'query' stock.id %}">Query</a>
+        <div class="single_content border border-success mt-2 pl-2" style="font-size: 30px;">
+            Stock: <a href="{% url 'details' stock.id %}" >{{stock.title}}</a>
+        <a href="{% url 'query' stock.id %}" style='float: right;padding-right: 10px;'>Query</a>
         </div>
     {% endfor %}
     </div>
@@ -46,9 +46,9 @@ function loadmorestock() {
             const data = response.Stocks
             data.map(stock => {
                 console.log(stock.id);
-                content_container.innerHTML += `<div class="single_content border border-success mt-2 pl-2">
-                                                    <a href="{% url 'details' '1' %}">${stock.title}</a>
-                                                    <p>${stock.desc}</p>
+                content_container.innerHTML += `<div class="single_content border border-success mt-2 pl-2" style="font-size: 30px;">
+                                                    Stock: <a href="{% url 'details' 3 %}">${stock.title}</a>
+                                                    <a href="{% url 'query' 3 %}" style='float: right;padding-right: 10px;'>Query</a>
                                                 </div>`})
             if (_current_item == total) {
                 alert.classList.remove('not-visible');

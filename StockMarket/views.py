@@ -21,7 +21,7 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegisterForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'register.html', {'form': form, 'title': 'Register'})
 
 
 @login_required
@@ -50,7 +50,7 @@ def details(request, id_num):
         return redirect('StockMarket')
 
     stock = Stock.objects.filter(id=id_num).values()
-    return render(request, 'details.html', context={'Stocks': stock})
+    return render(request, 'details.html', context={'stock': stock[0], 'title': 'Details'})
 
 
 def query(request, id_num):
@@ -58,11 +58,12 @@ def query(request, id_num):
         if request.POST['action'] == 'back':
             pass
         elif request.POST['action'] == 'submit':
-            stockname = request.POST['StockName']
-            username = request.POST['UserName']
+            stockname = request.POST['stockname']
+            username = request.POST['username']
             query = request.POST['query']
             query_obj = Query(stockname=stockname, username=username, query=query)
             query_obj.save()
         return redirect('StockMarket')
+
     stock = Stock.objects.filter(id=id_num).values()
-    return render(request, 'details.html', context={'Stocks': stock})
+    return render(request, 'query.html', context={'stock': stock[0], 'title': 'Query'})

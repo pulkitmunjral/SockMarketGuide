@@ -4,11 +4,9 @@
 <div class="container">
     <div class="content" id="content">
         <div class="single_content border border-success mt-2 pl-2">
-         {% for stock in Stocks %}
         <h2>{{stock.title}}</h2>
         <p>{{stock.desc}}</p>
             {% video stock.video '682x400' %}
-            {% endfor %}
         </div><br>
         <form method="post" >
             {% csrf_token %}

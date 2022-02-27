@@ -1,5 +1,18 @@
 {% extends "home.html" %}
 {% block content %}
 
-
+<div class="container">
+    <div class="content" id="content">
+        <form method="post" >
+            {% csrf_token %}
+            Stock Name
+            <input class="form-control mt-2 pl-2" type="search" placeholder="Stock Name" name="stockname" value="{{stock.title}}"><br>
+            User Name
+            <input class="form-control mt-2 pl-2" type="search" placeholder="User Name" name="username" value="{{user.username}}" size="500" readonly><br>
+            <input class="form-control mt-2 pl-2" type="text" placeholder="Write your query here" name="query"><br>
+            <button class="btn btn-success"  type="submit" name="action" value="back">Back to Home page</button>
+            <button class="btn btn-success"  type="submit" name="action" value="submit">Submit</button>
+        </form><br>
+    </div>
+</div>
 {% endblock %}
