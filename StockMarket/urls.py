@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='StockMarket/')),
+    path('', RedirectView.as_view(url='home/')),
     path('home/', views.home, name='home'),
     path('register/', views.register, name='register'),
     path('StockMarket/', views.StockMarket, name='StockMarket'),
