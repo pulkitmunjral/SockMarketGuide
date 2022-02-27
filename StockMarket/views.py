@@ -5,9 +5,10 @@ from .forms import UserRegisterForm, UserUpdateForm
 from django.contrib import messages
 from .models import Stock, Query
 from django.http import JsonResponse
-
+from django.contrib import messages
 
 def home(request):
+    messages.warning(request, f'Login to Stock Market for checking Stocks')
     return render(request, 'home.html')
 
 

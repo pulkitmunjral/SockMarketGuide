@@ -42,6 +42,7 @@
               {% else %}
                 <a class="nav-item nav-link" href="{%url 'login'%}">Sign-In</a>
                 <a class="nav-item nav-link" href="{%url 'register'%}">Sign-Up</a>
+
               {% endif %}
             </div>
           </div>
@@ -49,12 +50,16 @@
       </nav>
     </header>
     <main role="main" class="container">
-      <div class="row">
-        <div class="col-md-8">
-
-          {% block content %}{% endblock %}
-        </div>
-      </div>
+            {% if messages and not user.is_authenticated %}
+                {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                    {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% block content %}
+                <div style="font-size: 30px;text-align: centre;"> Welcome to Stock Market </div>
+            {% endblock %}
     </main>
 
 

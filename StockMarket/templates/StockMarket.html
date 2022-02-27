@@ -1,7 +1,7 @@
 {% extends "home.html" %}
 {% block content %}
 {% load crispy_forms_tags %}
-<div class="container" >
+<div class="container">
     <h1>Stocks</h1>
     <form method="post" action="{% url 'StockMarket' %}"  >
         {% csrf_token %}
