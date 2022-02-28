@@ -32,7 +32,7 @@ def StockMarket(request):
         stock_obj = Stock.objects.filter(title=search)[0:2]
         total_obj = Stock.objects.filter(title=search).count()
     else:
-        stock_obj = Stock.objects.all()[0:2]
+        stock_obj = Stock.objects.all()[0:5]
         total_obj = Stock.objects.count()
     return render(request, 'StockMarket.html', context={'Stocks': stock_obj, 'total_obj': total_obj})
 
@@ -40,15 +40,19 @@ def StockMarket(request):
 def load_more(request):
     loaded_item = request.GET.get('loaded_item')
     loaded_item_int = int(loaded_item)
-    limit = 2
+    limit = 5
     stock_obj = list(Stock.objects.values()[loaded_item_int:loaded_item_int + limit])
     data = {'Stocks': stock_obj}
     return JsonResponse(data=data)
 
 
 def details(request, id_num):
-    if request.method == "POST" and request.POST['action'] == 'back':
-        return redirect('StockMarket')
+    if request.method == "POST":
+        if request.POST['action'] == 'back':
+            return redirect('StockMarket')
+        elif request.POST['action'] == 'query':
+            stock_id = request.POST['stock_id']
+            return redirect('query',stock_id)
 
     stock = Stock.objects.filter(id=id_num).values()
     desc = stock[0]['desc'].split(',')

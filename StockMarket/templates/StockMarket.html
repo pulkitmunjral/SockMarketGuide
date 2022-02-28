@@ -47,7 +47,7 @@ function loadmorestock() {
             data.map(stock => {
                 console.log(stock.id);
                 content_container.innerHTML += `<div class="single_content border border-success mt-2 pl-2" style="font-size: 30px;">
-                                                    Stock: <a href="{% url 'details' 3 %}">${stock.title}</a>
+                                                    Stock: <a href="{% url 'details' 6 %}">${stock.title}</a>
                                                     <a href="{% url 'query' 3 %}" style='float: right;padding-right: 10px;'>Query</a>
                                                 </div>`})
             if (_current_item == total) {
