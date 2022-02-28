@@ -51,7 +51,8 @@ def details(request, id_num):
         return redirect('StockMarket')
 
     stock = Stock.objects.filter(id=id_num).values()
-    return render(request, 'details.html', context={'stock': stock[0], 'title': 'Details'})
+    desc = stock[0]['desc'].split(',')
+    return render(request, 'details.html', context={'stock': stock[0],'desc': desc, 'title': 'Details'})
 
 
 def query(request, id_num):

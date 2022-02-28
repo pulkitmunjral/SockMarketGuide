@@ -4,10 +4,14 @@
 <div class="container">
     <div class="content" id="content">
         <div class="single_content border border-success mt-2 pl-2">
-        <h2>{{stock.title}}</h2>
-        <p>{{stock.desc}}</p>
-            {% video stock.video '682x400' %}
-        </div><br>
+            <div style="float: right; position: relative; top: 4px; right: 4px;">{% video stock.video '580x338' %}</div>
+        <h1>{{stock.title}}</h1><br>
+        <h4>&emsp;Dscription: </h4><br>
+            {% for i in desc%}
+                <h6> &emsp;&emsp;&emsp; {{i}}</h6><br>
+            {% endfor %}
+            </div>
+        <br>
         <form method="post" >
             {% csrf_token %}
             <button class="btn btn-success"  type="submit" name="action" value="back">Back to Home page</button>
