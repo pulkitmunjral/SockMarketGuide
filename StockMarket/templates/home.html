@@ -2,15 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
-
     {% if title %}
         <title>Stock Market - {{ title }}</title>
     {% else %}
@@ -19,9 +14,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
-    .not-visible {
-        display: none;
-    }
+    .not-visible {display: none;}
 </style>
 <body>
     <header class="site-header">
@@ -34,7 +27,6 @@
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
             </div>
-            <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
                 <a class="nav-item nav-link" href="{%url 'logout'%}">{{user.username}}</a>
@@ -42,7 +34,6 @@
               {% else %}
                 <a class="nav-item nav-link" href="{%url 'login'%}">Sign-In</a>
                 <a class="nav-item nav-link" href="{%url 'register'%}">Sign-Up</a>
-
               {% endif %}
             </div>
           </div>
@@ -50,21 +41,28 @@
       </nav>
     </header>
     <main role="main" class="container">
-            {% if messages and not user.is_authenticated %}
+        {% block content %}
+            <div style="font-size: 30px;text-align: centre;"> Welcome to Stock Market </div>
+        {% endblock %}
+        {% if messages and not user.is_authenticated %}
+            <div class="visible" id="alert">
                 {% for message in messages %}
                     <div class="alert alert-{{message.tags}}">
                     {{message}}
                     </div>
                 {% endfor %}
-            {% endif %}
-            {% block content %}
-                <div style="font-size: 30px;text-align: centre;"> Welcome to Stock Market </div>
-            {% endblock %}
+            </div>
+        {% endif %}
     </main>
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script>
+    const alert = document.getElementById('alert');
+    var n=0
+    function repeat(n){
+        if(n%2==0){alert.classList.remove('not-visible');}
+        else{alert.classList.add('not-visible');}
+    }
+    setInterval(function(){n=n+1;repeat(n);},5000);
+</script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
