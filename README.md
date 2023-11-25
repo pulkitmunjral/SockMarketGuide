@@ -7,7 +7,7 @@
 > Please find the document to the probelum statment [here](https://github.com/pulkitmunjral/PlanifyAssessment/blob/main/StockMarket/static/10.PNG)
 
 ## User Guide
-> 1. Open the [Stock Market](https://planifyassessment.herokuapp.com) website
+> 1. Open the Stock Market website
 > 2. Your landing page is home page providing Sign-Up/Sign-In option with a welcome message
 > 3. If the user is not logged-in, a pop-up message saying "Login to Stock Market" is displayed every 5 seconds for 5 seconds.
 ![App Screenshot](https://github.com/pulkitmunjral/PlanifyAssessment/blob/main/StockMarket/static/1.PNG)
